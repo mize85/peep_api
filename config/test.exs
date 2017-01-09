@@ -17,3 +17,8 @@ config :peep, Peep.Repo,
   database: "peep_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+
+# reduce rounds in test
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

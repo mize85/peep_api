@@ -30,6 +30,15 @@ config :plug, :mimes, %{
 "application/vnd.api+json" => ["json-api"]
 }
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "Peep",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: System.get_env("GUARDIAN_SECRET") || "j4b5A+SXauwnknmyxDpQuRjOSHeiepw8VG3DoR4JVNSquMnJNp6M4F+ytN4EMJr7",
+  serializer: Peep.GuardianSerializer
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
