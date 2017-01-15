@@ -36,5 +36,7 @@ defmodule Peep.Endpoint do
     key: "_peep_key",
     signing_salt: "xuRDC676"
 
+  plug CORSPlug
+
   plug Peep.Router
 end

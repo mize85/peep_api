@@ -1,8 +1,6 @@
 defmodule Peep.SessionController do
   use Peep.Web, :controller
 
-  use Peep.Web, :controller
-  
     import Ecto.Query, only: [where: 2]
     import Comeonin.Bcrypt
     import Logger

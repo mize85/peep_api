@@ -8,7 +8,7 @@ defmodule Peep.Router do
   # Authenticated Requests
   pipeline :api_auth do
     plug :accepts, ["json", "json-api"]
-    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
   end
 
@@ -26,7 +26,7 @@ defmodule Peep.Router do
 
   end
 
-  scope "/api", Peepchat do
+  scope "/api", Peep do
       pipe_through :api_auth
       get "/user/current", UserController, :current
     end

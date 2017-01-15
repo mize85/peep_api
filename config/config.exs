@@ -24,10 +24,10 @@ config :logger, :console,
 
 #Json Api
 config :phoenix, :format_encoders,
-"json-api": Poison
+  "json-api": Poison
 
 config :plug, :mimes, %{
-"application/vnd.api+json" => ["json-api"]
+  "application/vnd.api+json" => ["json-api"]
 }
 
 config :guardian, Guardian,
