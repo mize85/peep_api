@@ -1,7 +1,8 @@
 defmodule Peep.UserController do
-  use Peep.Web, :controller
+    use Peep.Web, :controller
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
+    alias Peep.User
+    plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
 
     def index(conn, _params) do
         users = Repo.all(User)
