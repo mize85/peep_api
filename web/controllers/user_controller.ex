@@ -1,7 +1,6 @@
 defmodule Peep.UserController do
   use Peep.Web, :controller
 
-  alias Peep.User
   plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
 
   def current(conn, _) do

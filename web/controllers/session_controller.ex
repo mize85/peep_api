@@ -29,7 +29,7 @@ defmodule Peep.SessionController do
           
           true ->
             # Unsuccessful login
-            Logger.warning "User " <> username <> " just failed to login"
+            Logger.warn "User " <> username <> " just failed to login"
             conn
             |> put_status(401)
             |> render(Peep.ErrorView, "401.json") # 401
