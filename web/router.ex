@@ -34,6 +34,8 @@ defmodule Peep.Router do
         get "/rooms", RoomController, :index, as: :rooms
       end
 
+      resources "/users", UserController, only: [:show, :index]
+
       resources "/rooms", RoomController, except: [:new, :edit]
     end
 
