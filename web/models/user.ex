@@ -8,6 +8,9 @@ defmodule Peep.User do
     # Two virtual fields for password confirmation
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+    
+    has_many :messages, Peep.Message
+    has_many :rooms, Peep.Room
 
     timestamps()
   end

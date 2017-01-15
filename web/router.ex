@@ -10,6 +10,8 @@ defmodule Peep.Router do
     plug :accepts, ["json", "json-api"]
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
+    plug JaSerializer.ContentTypeNegotiation
+    plug JaSerializer.Deserializer
   end
 
   scope "/api", Peep do
@@ -27,17 +29,22 @@ defmodule Peep.Router do
   end
 
   scope "/api", Peep do
-      pipe_through :api_auth
-      get "/user/current", UserController, :current
+     pipe_through :api_auth
+     get "/user/current", UserController, :current
 
-      resources "/user", UserController, only: [:show, :index] do
+     resources "/user", UserController, only: [:show, :index] do
         get "/rooms", RoomController, :index, as: :rooms
-      end
+        get "/messages", MessageController, :index, as: :messages
+     end
 
-      resources "/users", UserController, only: [:show, :index]
+     resources "/users", UserController, only: [:show, :index]
 
-      resources "/rooms", RoomController, except: [:new, :edit]
-    end
+     resources "/messages", MessageController, only: [:index, :show, :update, :delete, :create]
+     resources "/rooms", RoomController, except: [:new, :edit] do
+        get "/messages", MessageController, :index, as: :messages
+        post "/messages", MessageController, :create, as: :messages
+     end
+  end
 
 end
 

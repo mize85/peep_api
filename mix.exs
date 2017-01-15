@@ -39,7 +39,8 @@ defmodule Peep.Mixfile do
      {:cors_plug, "~> 1.1"},
      {:guardian, "~>  0.14"},
      {:comeonin, "~> 3.0"},
-     {:ja_serializer, "~> 0.11.2"}]
+     {:ja_serializer, "~> 0.11.2"},
+     {:exgravatar, "~> 2.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
