@@ -16,11 +16,11 @@ defmodule Peep.RegistrationController do
       {:ok, user} ->
         conn
         |> put_status(:created)
-        |> render(Peep.UserView, "show.json", user: user)
+        |> render(Peep.UserView, "show.json-api", data: user)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Peep.ChangesetView, "error.json", changeset: changeset)
+        |> render(Peep.ChangesetView, "error.json-api", changeset: changeset)
     end
   
   end
