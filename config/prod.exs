@@ -62,7 +62,7 @@ config :logger, level: :info
 config :peep, Peep.Endpoint,
   http: [port: {:system, "PORT"}],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  url: [host: "frozen-coast-87972.herokuapp.com", port: 443],
+  url: [host: "peaceful-journey-56522.herokuapp.com", port: 443],
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 config :peep, Peep.Repo,
