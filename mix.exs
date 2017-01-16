@@ -19,7 +19,7 @@ defmodule Peep.Mixfile do
   def application do
     [mod: {Peep, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :ssl]]
   end
 
   # Specifies which paths to compile per environment.
