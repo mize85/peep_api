@@ -57,12 +57,12 @@ defmodule Peep.RoomControllerTest do
       "relationships" => %{
         "owner" => %{
           "links" => %{
-            "related" => "http://localhost:4001/api/user/#{user.id}"
+            "related" => "/api/user/#{user.id}"
           }
         },
         "messages" => %{
           "links" => %{
-            "related" => "http://localhost:4001/api/rooms/#{room.id}/messages"
+            "related" => "/api/rooms/#{room.id}/messages"
           }
         }
       }

@@ -7,10 +7,10 @@ defmodule Peep.MessageView do
   has_one :room, link: :room_link
 
   def author_link(message, conn) do
-    user_url(conn, :show, message.author_id)
+    user_path(conn, :show, message.author_id)
   end
   
   def room_link(message, conn) do
-    room_url(conn, :show, message.room_id)
+    room_path(conn, :show, message.room_id)
   end
 end
