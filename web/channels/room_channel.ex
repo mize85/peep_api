@@ -1,13 +1,34 @@
 defmodule Peep.RoomChannel do
   use Peep.Web, :channel
+  require Logger
+  import Guardian.Phoenix.Socket
 
-  def join("room:lobby", payload, socket) do
-    if authorized?(payload) do
-      {:ok, socket}
+  def join("room:" <> room, payload, socket) do
+    user = current_resource(socket)
+    if user do
+        {:ok, "Hello #{user.email}! Joined Room:#{room}", socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
   end
+
+
+  def handle_info({:after_join, msg}, socket) do
+      broadcast! socket, "user:entered", %{user: msg["user"]}
+      push socket, "join", %{status: "connected"}
+      {:noreply, socket}
+  end
+
+  def handle_info(:ping, socket) do
+      push socket, "new:msg", %{user: "SYSTEM", body: "ping"}
+      {:noreply, socket}
+  end
+
+  def terminate(reason, _socket) do
+      Logger.debug"> leave #{inspect reason}"
+      :ok
+  end
+
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
@@ -20,10 +41,5 @@ defmodule Peep.RoomChannel do
   def handle_in("shout", payload, socket) do
     broadcast socket, "shout", payload
     {:noreply, socket}
-  end
-
-  # Add authorization logic here as required.
-  defp authorized?(_payload) do
-    true
   end
 end

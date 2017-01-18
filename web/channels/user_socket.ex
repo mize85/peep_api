@@ -1,5 +1,6 @@
 defmodule Peep.UserSocket do
   use Phoenix.Socket
+  use Guardian.Phoenix.Socket
 
   ## Channels
   channel "room:*", Peep.RoomChannel
@@ -20,7 +21,7 @@ defmodule Peep.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(_params, socket) do
-    {:ok, socket}
+    :error
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
