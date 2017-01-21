@@ -23,6 +23,7 @@ defmodule Peep.MessageController do
 
     case Repo.insert(changeset) do
       {:ok, message} ->
+        broadcast_message(conn, room, message)
         conn
         |> put_status(:created)
         |> put_resp_header("location", message_path(conn, :show, message))
@@ -57,5 +58,10 @@ defmodule Peep.MessageController do
     message = Repo.get!(Message, id)
     Repo.delete!(message)
     send_resp(conn, :no_content, "")
+  end
+
+  def broadcast_message(conn, room, message) do
+    payload = JaSerializer.format(Peep.MessageView, message, conn)
+    Peep.Endpoint.broadcast("room:#{room.name}", "new:msg", payload)
   end
 end
