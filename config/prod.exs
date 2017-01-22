@@ -4,6 +4,7 @@ config :peep, Peep.Endpoint,
   http: [port: {:system, "PORT"}],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   url: [host: "peaceful-journey-56522.herokuapp.com", port: 443],
+  check_origin: ["peaceful-journey-56522.herokuapp.com", "pure-escarpment-53002.herokuapp.com", "localhost"],
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 config :peep, Peep.Repo,
