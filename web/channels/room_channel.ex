@@ -2,6 +2,7 @@ defmodule Peep.RoomChannel do
   use Peep.Web, :channel
   require Logger
   import Guardian.Phoenix.Socket
+  intercept ["new:msg"]
 
   def join("room:" <> room, payload, socket) do
     user = current_resource(socket)
@@ -19,27 +20,18 @@ defmodule Peep.RoomChannel do
       {:noreply, socket}
   end
 
-  def handle_info(:ping, socket) do
-      push socket, "new:msg", %{user: "SYSTEM", body: "ping"}
-      {:noreply, socket}
-  end
-
   def terminate(reason, _socket) do
       Logger.debug"> leave #{inspect reason}"
       :ok
   end
 
+  # no need to send message to creator..
+  def handle_out("new:msg", payload, socket) do
+      user = current_resource(socket)
 
-  # Channels can be used in a request/response fashion
-  # by sending replies to requests from the client
-  def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
-  end
-
-  # It is also common to receive messages from the client and
-  # broadcast to everyone in the current topic (room:lobby).
-  def handle_in("shout", payload, socket) do
-    broadcast socket, "shout", payload
-    {:noreply, socket}
+      if payload.author_id != user.id do
+        push socket, "new:msg", payload.payload
+      end
+      {:noreply, socket}
   end
 end

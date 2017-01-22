@@ -1,7 +1,10 @@
 defmodule Peep.MessageController do
   use Peep.Web, :controller
 
+  require Logger
+
   alias Peep.Message
+
 
   plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
 
@@ -61,7 +64,14 @@ defmodule Peep.MessageController do
   end
 
   def broadcast_message(conn, room, message) do
+
+    user = Guardian.Plug.current_resource(conn)
+
+    Logger.debug"> USER #{inspect user.id}"
+    Logger.debug"> AUTHOR #{inspect message.author_id}"
+
+
     payload = JaSerializer.format(Peep.MessageView, message, conn)
-    Peep.Endpoint.broadcast("room:#{room.name}", "new:msg", payload)
+    Peep.Endpoint.broadcast("room:#{room.name}", "new:msg", %{payload: payload, author_id: message.author_id})
   end
 end
