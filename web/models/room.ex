@@ -4,7 +4,7 @@ defmodule Peep.Room do
   schema "rooms" do
     field :name, :string
     belongs_to :owner, Peep.User
-    has_many :messages, Peep.Message
+    has_many :messages, Peep.Message, on_delete: :delete_all
     
     timestamps()
   end
