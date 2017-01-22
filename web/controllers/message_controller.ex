@@ -9,7 +9,12 @@ defmodule Peep.MessageController do
   plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
 
   def index(conn, %{"room_id" => room_id} = filters) do
-    messages = Repo.all(Message) |> Repo.preload :author
+
+    messages = Message
+        |> where(room_id: ^room_id)
+        |> Repo.all
+        |> Repo.preload :author
+
     render(conn, "index.json-api", data: messages)
   end
 
