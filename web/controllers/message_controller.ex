@@ -12,6 +12,7 @@ defmodule Peep.MessageController do
 
     messages = Message
         |> where(room_id: ^room_id)
+        |> order_by([m], m.inserted_at)
         |> Repo.all
         |> Repo.preload :author
 
