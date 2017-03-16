@@ -1,4 +1,4 @@
-defmodule Peep.User do
+defmodule Peep.Web.User do
   use Peep.Web, :model
 
   schema "users" do
@@ -9,8 +9,8 @@ defmodule Peep.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
     
-    has_many :messages, Peep.Message
-    has_many :rooms, Peep.Room
+    has_many :messages, Peep.Web.Message
+    has_many :rooms, Peep.Web.Room
 
     timestamps()
   end

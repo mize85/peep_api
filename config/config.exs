@@ -10,10 +10,10 @@ config :peep,
   ecto_repos: [Peep.Repo]
 
 # Configures the endpoint
-config :peep, Peep.Endpoint,
+config :peep, Peep.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "KvEtf+pb9huSoAtIUIDtDPWIXIAJxBuwhFwTMB7DDCppHl36FNitPZMud/ppFXwi",
-  render_errors: [view: Peep.ErrorView, accepts: ~w(json)],
+  render_errors: [view: Peep.Web.ErrorView, accepts: ~w(json)],
   pubsub: [name: Peep.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

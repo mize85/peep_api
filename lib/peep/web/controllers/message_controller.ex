@@ -1,12 +1,12 @@
-defmodule Peep.MessageController do
+defmodule Peep.Web.MessageController do
   use Peep.Web, :controller
 
   require Logger
 
-  alias Peep.Message
+  alias Peep.Web.Message
 
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
+  plug Guardian.Plug.EnsureAuthenticated, handler: Peep.Web.AuthErrorHandler
 
   def index(conn, %{"room_id" => room_id} = filters) do
 
@@ -14,20 +14,20 @@ defmodule Peep.MessageController do
         |> where(room_id: ^room_id)
         |> order_by([m], m.inserted_at)
         |> Repo.all
-        |> Repo.preload :author
+        |> Repo.preload(:author)
 
     render(conn, "index.json-api", data: messages)
   end
 
   def index(conn, %{"user_id" => user_id} = filters) do
-    messages = Repo.all(Message) |> Repo.preload :author
+    messages = Repo.all(Message) |> Repo.preload(:author)
     render(conn, "index.json-api", data: messages)
   end
 
   def create(conn, %{"data" => %{"type" => "messages", "attributes" => message_params, "relationships" => %{"author" => _, "room" => %{"data" => %{"id" => room_id, "type" => "rooms"}}}}}) do
     # Get the current user
     current_user = Guardian.Plug.current_resource(conn)
-    room = Repo.get(Peep.Room, room_id)
+    room = Repo.get(Peep.Web.Room, room_id)
     changeset = Message.changeset(%Message{author_id: current_user.id, room_id: room.id}, message_params)
 
     case Repo.insert(changeset) do
@@ -40,7 +40,7 @@ defmodule Peep.MessageController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Peep.ChangesetView, "error.json-api", changeset: changeset)
+        |> render(Peep.Web.ChangesetView, "error.json-api", changeset: changeset)
     end
   end
 
@@ -59,7 +59,7 @@ defmodule Peep.MessageController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Peep.ChangesetView, "error.json-api", changeset: changeset)
+        |> render(Peep.Web.ChangesetView, "error.json-api", changeset: changeset)
     end
   end
 
@@ -77,7 +77,7 @@ defmodule Peep.MessageController do
     Logger.debug"> AUTHOR #{inspect message.author_id}"
 
 
-    payload = JaSerializer.format(Peep.MessageView, message, conn)
-    Peep.Endpoint.broadcast("room:#{room.name}", "new:msg", %{payload: payload, author_id: message.author_id})
+    payload = JaSerializer.format(Peep.Web.MessageView, message, conn)
+    Peep.Web.Endpoint.broadcast("room:#{room.name}", "new:msg", %{payload: payload, author_id: message.author_id})
   end
 end

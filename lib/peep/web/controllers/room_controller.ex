@@ -1,10 +1,10 @@
-defmodule Peep.RoomController do
+defmodule Peep.Web.RoomController do
   use Peep.Web, :controller
   import Ecto.Query
 
-  alias Peep.Room
+  alias Peep.Web.Room
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
+  plug Guardian.Plug.EnsureAuthenticated, handler: Peep.Web.AuthErrorHandler
 
   def index(conn, %{"user_id" => user_id}) do
     rooms = Room
@@ -34,7 +34,7 @@ defmodule Peep.RoomController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Peep.ChangesetView, "error.json-api", changeset: changeset)
+        |> render(Peep.Web.ChangesetView, "error.json-api", changeset: changeset)
     end
   end
 
@@ -58,7 +58,7 @@ defmodule Peep.RoomController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Peep.ChangesetView, "error.json-api", changeset: changeset)
+        |> render(Peep.Web.ChangesetView, "error.json-api", changeset: changeset)
     end
   end
 

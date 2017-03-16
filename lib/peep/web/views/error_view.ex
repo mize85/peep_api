@@ -1,4 +1,4 @@
-defmodule Peep.ErrorView do
+defmodule Peep.Web.ErrorView do
   use Peep.Web, :view
   use JaSerializer.PhoenixView # Or use in web/web.ex
 

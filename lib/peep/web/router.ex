@@ -1,4 +1,4 @@
-defmodule Peep.Router do
+defmodule Peep.Web.Router do
   use Peep.Web, :router
 
   pipeline :api do
@@ -14,7 +14,7 @@ defmodule Peep.Router do
     plug JaSerializer.Deserializer
   end
 
-  scope "/api", Peep do
+  scope "/api", Peep.Web do
     pipe_through :api
 
     # Registration
@@ -28,7 +28,7 @@ defmodule Peep.Router do
 
   end
 
-  scope "/api", Peep do
+  scope "/api", Peep.Web do
      pipe_through :api_auth
      get "/user/current", UserController, :current
 

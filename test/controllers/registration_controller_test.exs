@@ -1,7 +1,7 @@
 defmodule Peep.RegistrationControllerTest do
-  use Peep.ConnCase
+  use Peep.Web.ConnCase
 
-  alias Peep.User
+  alias Peep.Web.User
 
   @valid_attrs %{
     email: "mike@example.com",

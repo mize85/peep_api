@@ -1,4 +1,4 @@
-defmodule Peep.Gettext do
+defmodule Peep.Web.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 

@@ -1,9 +1,9 @@
-defmodule Peep.UserSocket do
+defmodule Peep.Web.UserSocket do
   use Phoenix.Socket
   use Guardian.Phoenix.Socket
 
   ## Channels
-  channel "room:*", Peep.RoomChannel
+  channel "room:*", Peep.Web.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

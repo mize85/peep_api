@@ -1,4 +1,4 @@
-defmodule Peep.MessageView do
+defmodule Peep.Web.MessageView do
   use Peep.Web, :view
   use JaSerializer.PhoenixView
 

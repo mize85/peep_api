@@ -1,7 +1,7 @@
 defmodule Peep.UserTest do
-  use Peep.ModelCase
+  use Peep.Web.DataCase
 
-  alias Peep.User
+  alias Peep.Web.User
 
   @valid_attrs %{email: "mike@example.com",
     password: "abcde12345",

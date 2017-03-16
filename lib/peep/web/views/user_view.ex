@@ -1,4 +1,4 @@
-defmodule Peep.UserView do
+defmodule Peep.Web.UserView do
     use Peep.Web, :view
       use JaSerializer.PhoenixView
       import Exgravatar

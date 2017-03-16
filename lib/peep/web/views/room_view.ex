@@ -1,4 +1,4 @@
-defmodule Peep.RoomView do
+defmodule Peep.Web.RoomView do
   use Peep.Web, :view
   use JaSerializer.PhoenixView
 

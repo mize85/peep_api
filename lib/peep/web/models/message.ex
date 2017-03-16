@@ -1,12 +1,12 @@
-defmodule Peep.Message do
+defmodule Peep.Web.Message do
   use Peep.Web, :model
   
     schema "messages" do
       field :body, :string
-      belongs_to :author, Peep.User
-      belongs_to :room, Peep.Room
+      belongs_to :author, Peep.Web.User
+      belongs_to :room, Peep.Web.Room
   
-      timestamps
+      timestamps()
     end
   
     @required_fields ~w(body author_id room_id)

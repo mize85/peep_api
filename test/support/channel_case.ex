@@ -1,4 +1,4 @@
-defmodule Peep.ChannelCase do
+defmodule Peep.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule Peep.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint Peep.Endpoint
+      @endpoint Peep.Web.Endpoint
     end
   end
 

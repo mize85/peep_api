@@ -1,4 +1,4 @@
-defmodule Peep.RoomChannel do
+defmodule Peep.Web.RoomChannel do
   use Peep.Web, :channel
   require Logger
   import Guardian.Phoenix.Socket

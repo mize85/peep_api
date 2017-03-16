@@ -1,26 +1,28 @@
 defmodule Peep.RoomControllerTest do
-  use Peep.ConnCase
+  use Peep.Web.ConnCase
 
-  alias Peep.Room
+  alias Peep.Web.Room
+  alias Peep.Web.User
+
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
   defp create_test_rooms(user) do
     # Create three rooms owned by the logged in user
     Enum.each ["first room", "second room", "third room"], fn name -> 
-      Repo.insert! %Peep.Room{owner_id: user.id, name: name}
+      Repo.insert! %Room{owner_id: user.id, name: name}
     end
 
     # Create two rooms owned by another user
-    other_user = Repo.insert! %Peep.User{}
+    other_user = Repo.insert! %User{}
     Enum.each ["fourth room", "fifth room"], fn name -> 
-      Repo.insert! %Peep.Room{owner_id: other_user.id, name: name}
+      Repo.insert! %Room{owner_id: other_user.id, name: name}
     end
   end
 
 
   setup %{conn: conn} do
-    user = Repo.insert! %Peep.User{}
+    user = Repo.insert! %User{}
     { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)
     conn = conn
     |> put_req_header("content-type", "application/vnd.api+json")

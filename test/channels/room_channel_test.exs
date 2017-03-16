@@ -1,7 +1,7 @@
 defmodule Peep.RoomChannelTest do
-  use Peep.ChannelCase
+  use Peep.Web.ChannelCase
 
-  alias Peep.RoomChannel
+  alias Peep.Web.RoomChannel
 
   setup do
     {:ok, _, socket} =

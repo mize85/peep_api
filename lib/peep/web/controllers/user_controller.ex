@@ -1,8 +1,8 @@
-defmodule Peep.UserController do
+defmodule Peep.Web.UserController do
     use Peep.Web, :controller
 
-    alias Peep.User
-    plug Guardian.Plug.EnsureAuthenticated, handler: Peep.AuthErrorHandler
+    alias Peep.Web.User
+    plug Guardian.Plug.EnsureAuthenticated, handler: Peep.Web.AuthErrorHandler
 
     def index(conn, _params) do
         users = Repo.all(User)
@@ -19,6 +19,6 @@ defmodule Peep.UserController do
         |> Guardian.Plug.current_resource
   
       conn
-        |> render(Peep.UserView, "show.json-api", data: user)
+        |> render(Peep.Web.UserView, "show.json-api", data: user)
     end
 end

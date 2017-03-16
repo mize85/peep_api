@@ -1,4 +1,4 @@
-defmodule Peep.ChangesetView do
+defmodule Peep.Web.ChangesetView do
   use Peep.Web, :view
 
   @doc """

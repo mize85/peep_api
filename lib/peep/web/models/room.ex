@@ -1,10 +1,10 @@
-defmodule Peep.Room do
+defmodule Peep.Web.Room do
   use Peep.Web, :model
 
   schema "rooms" do
     field :name, :string
-    belongs_to :owner, Peep.User
-    has_many :messages, Peep.Message, on_delete: :delete_all
+    belongs_to :owner, Peep.Web.User
+    has_many :messages, Peep.Web.Message, on_delete: :delete_all
     
     timestamps()
   end

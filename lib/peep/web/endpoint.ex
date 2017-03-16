@@ -1,7 +1,7 @@
-defmodule Peep.Endpoint do
+defmodule Peep.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :peep
 
-  socket "/socket", Peep.UserSocket
+  socket "/socket", Peep.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule Peep.Endpoint do
 
   plug CORSPlug
 
-  plug Peep.Router
+  plug Peep.Web.Router
 end

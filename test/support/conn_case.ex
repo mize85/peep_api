@@ -1,4 +1,4 @@
-defmodule Peep.ConnCase do
+defmodule Peep.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule Peep.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Peep.Router.Helpers
+      import Peep.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint Peep.Endpoint
+      @endpoint Peep.Web.Endpoint
     end
   end
 

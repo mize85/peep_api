@@ -1,15 +1,17 @@
 defmodule Peep.MessageControllerTest do
-  use Peep.ConnCase
+  use Peep.Web.ConnCase
 
-  alias Peep.Message
+  alias Peep.Web.Message
+  alias Peep.Web.Room
+
   @valid_attrs %{body: "some content"}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
-    user = Repo.insert! %Peep.User{}
-    other_user = Repo.insert! %Peep.User{}
-    room1 = Repo.insert! %Peep.Room{owner_id: user.id}
-    room2 = Repo.insert! %Peep.Room{owner_id: other_user.id}
+    user = Repo.insert! %Peep.Web.User{}
+    other_user = Repo.insert! %Peep.Web.User{}
+    room1 = Repo.insert! %Room{owner_id: user.id}
+    room2 = Repo.insert! %Room{owner_id: other_user.id}
     { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)
     conn = conn
     |> put_req_header("content-type", "application/vnd.api+json")

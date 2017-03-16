@@ -1,11 +1,11 @@
-defmodule Peep.SessionController do
+defmodule Peep.Web.SessionController do
   use Peep.Web, :controller
 
     import Ecto.Query, only: [where: 2]
     import Comeonin.Bcrypt
     import Logger
-  
-    alias Peep.User
+
+    alias Peep.Web.User
     
     def create(conn, %{"grant_type" => "password",
       "username" => username,
@@ -32,7 +32,7 @@ defmodule Peep.SessionController do
             Logger.warn "User " <> username <> " just failed to login"
             conn
             |> put_status(401)
-            |> render(Peep.ErrorView, "401.json") # 401
+            |> render(Peep.Web.ErrorView, "401.json") # 401
         end
       rescue
         e ->
@@ -40,7 +40,7 @@ defmodule Peep.SessionController do
           Logger.error "Unexpected error while attempting to login user " <> username
           conn
           |> put_status(401)
-          |> render(Peep.ErrorView, "401.json") # 401
+          |> render(Peep.Web.ErrorView, "401.json") # 401
       end
     end
   

@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :peep, Peep.Endpoint,
+config :peep, Peep.Web.Endpoint,
   http: [port: {:system, "PORT"}],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   url: [host: "peaceful-journey-56522.herokuapp.com", port: 443],

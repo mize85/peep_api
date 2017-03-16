@@ -1,9 +1,9 @@
 defmodule Peep.MessageTest do
-  use Peep.ModelCase
+  use Peep.Web.DataCase
 
-    alias Peep.Message
-    alias Peep.Room
-    alias Peep.User
+    alias Peep.Web.Message
+    alias Peep.Web.Room
+    alias Peep.Web.User
   
     test "empty params" do
       changeset = Message.changeset(%Message{}, %{})

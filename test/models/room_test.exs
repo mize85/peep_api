@@ -1,7 +1,7 @@
 defmodule Peep.RoomTest do
-  use Peep.ModelCase
+  use Peep.Web.DataCase
 
-  alias Peep.Room
+  alias Peep.Web.Room
 
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}

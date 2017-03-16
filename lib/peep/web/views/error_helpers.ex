@@ -1,4 +1,4 @@
-defmodule Peep.ErrorHelpers do
+defmodule Peep.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -21,9 +21,9 @@ defmodule Peep.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Peep.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Peep.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Peep.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Peep.Web.Gettext, "errors", msg, opts)
     end
   end
 end

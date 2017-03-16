@@ -1,7 +1,7 @@
-defmodule Peep.RegistrationController do
+defmodule Peep.Web.RegistrationController do
   use Peep.Web, :controller
 
-  alias Peep.User
+  alias Peep.Web.User
 
   def create(conn, %{"data" => %{"type" => "users",
     "attributes" => %{"email" => email,
@@ -16,11 +16,11 @@ defmodule Peep.RegistrationController do
       {:ok, user} ->
         conn
         |> put_status(:created)
-        |> render(Peep.UserView, "show.json-api", data: user)
+        |> render(Peep.Web.UserView, "show.json-api", data: user)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Peep.ChangesetView, "error.json-api", changeset: changeset)
+        |> render(Peep.Web.ChangesetView, "error.json-api", changeset: changeset)
     end
   
   end

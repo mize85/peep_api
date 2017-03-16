@@ -28,27 +28,28 @@ defmodule Peep.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: Peep.Web
 
       alias Peep.Repo
       import Ecto
       import Ecto.Query
 
-      import Peep.Router.Helpers
-      import Peep.Gettext
+      import Peep.Web.Router.Helpers
+      import Peep.Web.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/peep/web/templates",
+                        namespace: Peep.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
-      import Peep.Router.Helpers
-      import Peep.ErrorHelpers
-      import Peep.Gettext
+      import Peep.Web.Router.Helpers
+      import Peep.Web.ErrorHelpers
+      import Peep.Web.Gettext
     end
   end
 
@@ -65,7 +66,7 @@ defmodule Peep.Web do
       alias Peep.Repo
       import Ecto
       import Ecto.Query
-      import Peep.Gettext
+      import Peep.Web.Gettext
     end
   end
 
