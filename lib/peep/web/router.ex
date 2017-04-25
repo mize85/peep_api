@@ -7,10 +7,10 @@ defmodule Peep.Web.Router do
 
   # Authenticated Requests
   pipeline :api_auth do
-    plug :accepts, ["json", "json-api"]
+    plug :accepts, ["json", "json-api", "multipart"]
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
-    plug JaSerializer.ContentTypeNegotiation
+    #plug JaSerializer.ContentTypeNegotiation
     plug JaSerializer.Deserializer
   end
 
@@ -37,7 +37,7 @@ defmodule Peep.Web.Router do
         get "/messages", MessageController, :index, as: :messages
      end
 
-     resources "/users", UserController, only: [:show, :index]
+     resources "/users", UserController, only: [:show, :index, :update]
 
      resources "/messages", MessageController, only: [:index, :show, :update, :delete, :create]
      resources "/rooms", RoomController, except: [:new, :edit] do

@@ -19,7 +19,7 @@ defmodule Peep.Mixfile do
   def application do
     [mod: {Peep.Application, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :ssl]]
+                    :phoenix_ecto, :postgrex, :comeonin, :ssl, :arc_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +40,8 @@ defmodule Peep.Mixfile do
      {:guardian, "~>  0.14"},
      {:comeonin, "~> 3.0"},
      {:ja_serializer, "~> 0.11.2"},
-     {:exgravatar, "~> 2.0"}]
+     {:arc, "~> 0.8.0"},
+     {:arc_ecto, "~> 0.7.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

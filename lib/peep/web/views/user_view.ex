@@ -1,9 +1,8 @@
 defmodule Peep.Web.UserView do
     use Peep.Web, :view
       use JaSerializer.PhoenixView
-      import Exgravatar
-    
-      attributes [:email, :gravatar]
+
+      attributes [:email, :avatar]
       has_many :rooms, link: :rooms_link
       has_many :messages, link: :messages_link
     
@@ -13,9 +12,5 @@ defmodule Peep.Web.UserView do
     
       def messages_link(user, conn) do
         user_messages_path(conn, :index, user.id)
-      end
-    
-      def gravatar(user, conn) do
-        gravatar_url user.email, secure: true, s: 128
       end
 end
