@@ -10,10 +10,10 @@ defmodule Peep.Web.Room do
   end
 
   @doc """
-  Builds a changeset based on the `struct` and `params`.
+  Builds a changeset based on the `model` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
-    struct
+  def changeset(model, params \\ %{}) do
+    model
     |> cast(params, [:name])
     |> validate_required([:name])
     |> unique_constraint(:name)

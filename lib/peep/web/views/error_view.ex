@@ -8,7 +8,6 @@ defmodule Peep.Web.ErrorView do
   end
 
   def render("400.json", _assigns) do
-    IO.inspect _assigns;
     %{title: "Bad Request", code: 400}
     |> JaSerializer.ErrorSerializer.format
   end
@@ -20,7 +19,6 @@ defmodule Peep.Web.ErrorView do
   end
 
   def render("500.json", _assigns) do
-    IO.inspect _assigns;
     %{title: "Internal Server Error", code: 500}
     |> JaSerializer.ErrorSerializer.format 
   end

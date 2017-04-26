@@ -19,19 +19,14 @@ defmodule Peep.Web.User do
     timestamps()
   end
 
-  @required_fields ~w(email password password_confirmation)
-  @optional_fields ~w()
-
-   @required_file_fields ~w()
-   @optional_file_fields ~w(avatar)
-
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
     def changeset(model, params \\ :empty) do
       model
-      |> cast(params, @required_fields, @optional_fields)
-      |> cast_attachments(params, @required_file_fields, @optional_file_fields)
+      |> cast(params, [:email, :password, :password_confirmation])
+      |> validate_required([:email, :password, :password_confirmation])
+      |> cast_attachments(params, [:avatar])
       |> validate_format(:email, ~r/@/)
       |> validate_length(:password, min: 8)
       |> validate_confirmation(:password)
@@ -40,15 +35,13 @@ defmodule Peep.Web.User do
     end
 
   def changeset_update(model, params \\ :empty) do
-        IO.inspect(model)
-        IO.inspect(params)
         model
+        |> cast(params, [:email, :avatar])
+        |> validate_required(:email)
         |> cast_attachments(params, [:avatar])
         |> validate_format(:email, ~r/@/)
         |> unique_constraint(:email)
       end
-
-
 
   defp hash_password(%{valid?: false} = changeset), do: changeset
   defp hash_password(%{valid?: true} = changeset) do

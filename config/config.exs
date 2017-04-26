@@ -30,7 +30,6 @@ config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
-
 config :arc,
   storage: Arc.Storage.Local
 

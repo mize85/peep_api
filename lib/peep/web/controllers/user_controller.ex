@@ -18,18 +18,11 @@ defmodule Peep.Web.UserController do
 
     def update(conn, %{"id" => id, "data" => %{"id" => _, "type" => "users", "attributes" => attributes}}) do
 
-
-      Logger.info  "Logging this text!"
-
-      %{"avatar" => avatar} = attributes
-
-      IO.inspect(avatar)
-
-
       user = Repo.get!(User, id)
-      changeset = User.changeset_update(user, %{"avatar": avatar})
 
-      IO.inspect(user)
+      IO.inspect(attributes)
+
+      changeset = User.changeset_update(user, attributes)
       IO.inspect(changeset)
 
       case Repo.update(changeset) do
@@ -41,13 +34,6 @@ defmodule Peep.Web.UserController do
           |> render(Peep.Web.ChangesetView, "error.json-api", changeset: changeset)
       end
     end
-
-    def create(conn, %{"id" => id}) do
-
-           Logger.info  "Logging this text!"
-            user = Repo.get!(User, id)
-            render(conn, "show.json-api", data: user)
-        end
 
     def current(conn, _) do
       user = conn
