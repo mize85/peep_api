@@ -32,11 +32,11 @@ defmodule Peep.Web.MessageController do
 
     case Repo.insert(changeset) do
       {:ok, message} ->
-        broadcast_message(conn, room, message)
         conn
         |> put_status(:created)
         |> put_resp_header("location", message_path(conn, :show, message))
         |> render("show.json-api", data: message)
+        |> broadcast_message(room, message)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -70,14 +70,7 @@ defmodule Peep.Web.MessageController do
   end
 
   def broadcast_message(conn, room, message) do
-
-    user = Guardian.Plug.current_resource(conn)
-
-    Logger.debug"> USER #{inspect user.id}"
-    Logger.debug"> AUTHOR #{inspect message.author_id}"
-
-
     payload = JaSerializer.format(Peep.Web.MessageView, message, conn)
-    Peep.Web.Endpoint.broadcast("room:#{room.name}", "new:msg", %{payload: payload, author_id: message.author_id})
+    Peep.Web.Endpoint.broadcast("room:#{room.name}", "new:msg", payload)
   end
 end
