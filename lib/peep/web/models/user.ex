@@ -36,7 +36,7 @@ defmodule Peep.Web.User do
 
   def changeset_update(model, params \\ :empty) do
         model
-        |> cast(params, [:email, :avatar])
+        |> cast(params, [:email])
         |> validate_required(:email)
         |> cast_attachments(params, [:avatar])
         |> validate_format(:email, ~r/@/)

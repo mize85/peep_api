@@ -19,11 +19,7 @@ defmodule Peep.Web.UserController do
     def update(conn, %{"id" => id, "data" => %{"id" => _, "type" => "users", "attributes" => attributes}}) do
 
       user = Repo.get!(User, id)
-
-      IO.inspect(attributes)
-
       changeset = User.changeset_update(user, attributes)
-      IO.inspect(changeset)
 
       case Repo.update(changeset) do
         {:ok, user} ->

@@ -69,8 +69,9 @@ defmodule Peep.Web.MessageController do
     send_resp(conn, :no_content, "")
   end
 
-  def broadcast_message(conn, room, message) do
+  defp broadcast_message(conn, room, message) do
     payload = JaSerializer.format(Peep.Web.MessageView, message, conn)
     Peep.Web.Endpoint.broadcast("room:#{room.name}", "new:msg", payload)
+    conn
   end
 end
