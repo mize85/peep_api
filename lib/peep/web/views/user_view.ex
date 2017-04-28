@@ -2,7 +2,7 @@ defmodule Peep.Web.UserView do
     use Peep.Web, :view
       use JaSerializer.PhoenixView
 
-      attributes [:email, :avatar_url, :thumb_url]
+      attributes [:email, :first_name, :last_name, :avatar_url, :thumb_url]
       has_many :rooms, link: :rooms_link
       has_many :messages, link: :messages_link
     

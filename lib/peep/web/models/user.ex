@@ -11,7 +11,8 @@ defmodule Peep.Web.User do
     field :password_confirmation, :string, virtual: true
 
     field :avatar, Peep.Web.Avatar.Type
-
+    field :first_name, :string
+    field :last_name, :string
 
     has_many :messages, Peep.Web.Message
     has_many :rooms, Peep.Web.Room
@@ -36,9 +37,9 @@ defmodule Peep.Web.User do
 
   def changeset_update(model, params \\ :empty) do
         model
-        |> cast(params, [:email])
-        |> validate_required(:email)
+        |> cast(params, [:email, :first_name, :last_name])
         |> cast_attachments(params, [:avatar])
+        |> validate_required(:email)
         |> validate_format(:email, ~r/@/)
         |> unique_constraint(:email)
       end
