@@ -3,7 +3,7 @@ defmodule Peep.Web.RoomChannel do
   require Logger
   import Guardian.Phoenix.Socket
 
-  def join("room:" <> room, payload, socket) do
+  def join("room:" <> room, _payload, socket) do
     user = current_resource(socket)
     if user do
         {:ok, "Hello #{user.email}! Joined Room:#{room}", socket}

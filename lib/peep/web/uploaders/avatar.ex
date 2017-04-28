@@ -24,7 +24,7 @@ defmodule Peep.Web.Avatar do
   end
 
   # Override the storage directory:
-  def storage_dir(_version, {file, scope}) do
+  def storage_dir(_version, {_file, scope}) do
     "uploads/user/avatars/#{scope.id}"
   end
 
