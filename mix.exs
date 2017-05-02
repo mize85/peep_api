@@ -41,7 +41,8 @@ defmodule Peep.Mixfile do
      {:comeonin, "~> 3.0"},
      {:ja_serializer, "~> 0.11.2"},
      {:arc, "~> 0.8.0"},
-     {:arc_ecto, "~> 0.7.0"}]
+     {:arc_ecto, "~> 0.7.0"},
+     {:logger_file_backend, "0.0.9"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -20,6 +20,7 @@
   "inflex": {:hex, :inflex, "1.8.0", "7cfc752ae244b30b42ac9cf4c092771b485bc3424139aba4a933e54be8c63931", [:mix], []},
   "ja_serializer": {:hex, :ja_serializer, "0.11.2", "952b59b480e656e0bd991c5822dda4dfc6c507f1c55d6eaea363cd84e6002e2c", [:mix], [{:inflex, "~> 1.4", [hex: :inflex, optional: false]}, {:plug, "> 1.0.0", [hex: :plug, optional: false]}, {:poison, "~> 1.4 or ~> 2.0", [hex: :poison, optional: false]}, {:scrivener, "~> 1.2 or ~> 2.0", [hex: :scrivener, optional: true]}]},
   "jose": {:hex, :jose, "1.8.2", "2945d4ad6cc94515c606ade52455be3d6bba15578b7e2beed1704ad0cb1e1c80", [:mix, :rebar3], [{:base64url, "~> 0.0.1", [hex: :base64url, optional: false]}]},
+  "logger_file_backend": {:hex, :logger_file_backend, "0.0.9", "5c2f7d4a28431e695cdf94d191523dbafe609321a67bb654254897f546c393db", [:mix], []},
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], []},
   "mime": {:hex, :mime, "1.1.0", "01c1d6f4083d8aa5c7b8c246ade95139620ef8effb009edde934e0ec3b28090a", [:mix], []},
   "mimerl": {:hex, :mimerl, "1.0.2", "993f9b0e084083405ed8252b99460c4f0563e41729ab42d9074fd5e52439be88", [:rebar3], []},
