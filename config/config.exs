@@ -18,15 +18,9 @@ config :peep, Peep.Web.Endpoint,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
-config :logger,
+config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id],
-  backends: [{LoggerFileBackend, :info_log}, :console]
-
-config :logger, :info_log,
-  path: "log/info.log",
-  level: :info
-
+  metadata: [:request_id]
 
 #Json Api
 config :phoenix, :format_encoders,
